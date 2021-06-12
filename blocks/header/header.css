@@ -2,12 +2,15 @@
     border-bottom: 1px solid #545454;
     max-width: 880px;
     margin: 0 auto;
+    padding-top: 45px;
+    padding-left: 8px;
+    padding-bottom: 41px;
 }
 
-@media screen and (min-width: 320px) {
+@media screen and (min-width: 720px) {
     .header {
         padding-top: 28px;
-        padding-left: 8px;
+        padding-left: 0px;
         padding-bottom: 32px;
     }
 }

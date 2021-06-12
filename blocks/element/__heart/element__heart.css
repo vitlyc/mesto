@@ -1,0 +1,9 @@
+.element__heart {
+    display: block;
+    margin-left: 30px;
+    width: 22px;
+    height: 19px;
+    align-self: center;
+    margin-left: auto;
+    cursor: pointer;
+}
