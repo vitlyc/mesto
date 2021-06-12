@@ -3,6 +3,7 @@
     font-family: 'Inter', 'Verdana', sans-serif;
     font-style: normal;
     font-weight: 400;
+    font-display: swap;
     color: #FFFFFF;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
