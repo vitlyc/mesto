@@ -1,5 +1,5 @@
 // console.log()
-const popupForm = document.querySelector('.poup__container')
+const popupForm = document.querySelector('.popup__container')
 const popupElement = document.querySelector('.popup')
 const popupClose = popupElement.querySelector('.popup__close-button')
 const popupSave = popupElement.querySelector('.popup__save-button')
