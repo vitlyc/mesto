@@ -1,5 +1,11 @@
 # Проект: Место
 
+gh-pages: https://vitlyc.github.io/mesto/index.html
+
+JavaScript: Форма, смена классов.
+Адаптивная верстка
+
+
 ### Обзор
 
 * Figma
