@@ -17,5 +17,7 @@
         text-align: left;
         display: block;
         max-width: 294px;
+        text-align: left;
+        margin: 0;
     }
 }
