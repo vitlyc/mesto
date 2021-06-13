@@ -5,7 +5,9 @@
     margin: 0 auto;
     /*  */
     background: transparent center no-repeat url(../../../images/plus-icon.svg);
+    background-size: 16px;
     cursor: pointer;
+    border-radius: 2px;
 }
 
 .profile__add-button:hover {
@@ -17,5 +19,6 @@
         width: 150px;
         margin-left: auto;
         padding: 0px 64px 0;
+        background-size: 22px;
     }
 }
