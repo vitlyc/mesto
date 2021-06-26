@@ -1,0 +1,15 @@
+.add-popup__title {
+    text-align: left;
+    font-weight: 900;
+    font-size: 18px;
+    line-height: 22px;
+    color: #000000;
+    margin: 0 0 75px;
+}
+
+@media screen and (min-width: 720px) {
+    .add-popup__title {
+        font-size: 24px;
+        line-height: 29px;
+    }
+}
