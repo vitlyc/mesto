@@ -1,7 +1,7 @@
   .image-popup__close-button {
       padding: 0;
-      width: 26px;
-      height: 26px;
+      width: 20px;
+      height: 20px;
       position: absolute;
       align-self: flex-end;
       right: 33px;

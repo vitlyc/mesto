@@ -60,9 +60,6 @@ imagePopupClose.addEventListener('click', function() {
 })
 
 
-
-
-
 const elementRemove = document.querySelector('.element__remove-button')
 
 const addButton = document.querySelector('.profile__add-button')
@@ -122,10 +119,6 @@ const saveForm = function(evt) {
 }
 
 
-
-
-
-
 profileEdit.addEventListener('click', togglePopupVisibility)
 popupClose.addEventListener('click', togglePopupVisibility)
 addButton.addEventListener('click', toggleAddPopupVisibility)
@@ -144,7 +137,6 @@ elements.addEventListener('click', function(event) {
     }
 
 })
-
 
 window.addEventListener('resize', function() {
 
