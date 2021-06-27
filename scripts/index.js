@@ -28,20 +28,40 @@ const template = document.querySelector('.template').content
 
 
 
+function makingElement(item) {
+    const newElement = template.cloneNode(true)
+    newElement.querySelector('.element__title').textContent = item.name
+    newElement.querySelector('.element__image').src = item.link
+    newElement.querySelector('.element__image').alt = item.name
+    newElement.querySelector('.element__image').addEventListener('click', displayImagePopup)
+    elementsList.appendChild(newElement)
+}
+
 initialCards.forEach(function(item) {
 
     makingElement(item)
 })
 
+function displayImagePopup(evt) {
+    let targetImage = evt.target
+    imagePopupImage.src = targetImage.src
+    imagePopupTitle.textContent = targetImage.alt
+    imagePopup.classList.toggle('image-popup_opened')
 
-
-
-function makingElement(item) {
-    const newElement = template.cloneNode(true)
-    newElement.querySelector('.element__title').textContent = item.name
-    newElement.querySelector('.element__image').src = item.link
-    elementsList.appendChild(newElement)
 }
+
+const imagePopup = document.querySelector('.image-popup')
+const imagePopupImage = imagePopup.querySelector('.image-popup__image')
+const imagePopupTitle = imagePopup.querySelector('.image-popup__title')
+const imagePopupClose = imagePopup.querySelector('.image-popup__close-button')
+
+imagePopupClose.addEventListener('click', function() {
+    imagePopup.classList.toggle('image-popup_opened')
+})
+
+
+
+
 
 const elementRemove = document.querySelector('.element__remove-button')
 
@@ -72,7 +92,7 @@ function togglePopupVisibility(event) {
     popupElement.classList.toggle('popup_opened')
 }
 
-function toggleAddpopupVisibility(event) {
+function toggleAddPopupVisibility(event) {
     event.preventDefault()
     addPopupElement.classList.toggle('add-popup_opened')
 }
@@ -108,8 +128,8 @@ const saveForm = function(evt) {
 
 profileEdit.addEventListener('click', togglePopupVisibility)
 popupClose.addEventListener('click', togglePopupVisibility)
-addButton.addEventListener('click', toggleAddpopupVisibility)
-addPopupClose.addEventListener('click', toggleAddpopupVisibility)
+addButton.addEventListener('click', toggleAddPopupVisibility)
+addPopupClose.addEventListener('click', toggleAddPopupVisibility)
 
 
 popupForm.addEventListener('submit', saveForm)
@@ -121,9 +141,7 @@ elements.addEventListener('click', function(event) {
         target.classList.toggle('element__heart_active')
     } else if (target.classList[0] == 'element__remove-button') {
         event.target.closest('.element').remove()
-
     }
-
 
 })
 
