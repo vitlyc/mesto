@@ -31,7 +31,7 @@
 
                     <template class="template">
                     <li class="element">
-                        <img class="element__image" src="./images/Cherkesia.jpg " alt="Пейзаж">
+                        <img class="element__image" src="" alt="">
                         <button class="element__remove-button" type="button"></button>
                         <div class="element__heading">
                             <p class="element__title">Карачаево-Черкесия</p>
@@ -47,36 +47,36 @@
 
             <p class="footer__copyright">&copy; Mesto Russia</p>
         </footer>
-        <section class="popup">
+        <section class="popup popup_type_edit-profile">
             <form class="popup__container" name="user-data">
                 <h3 class="popup__title">Редактировать профиль</h3>
                 <input type="text" name="Name" placeholder="Имя" value="Жак-Ив Кусто" class="popup__text popup__text_type_name">
                 <input type="text" name="Profession" placeholder="Профессия" value="Исследователь океана" class="popup__text popup__text_type_profession">
                 <button class="popup__save-button" type='submit'>Сохранить</button>
                 <button class="popup__close-button" type="button"></button>
-
             </form>
-
         </section>
-        <section class="add-popup">
-            <form class="add-popup__container" name="place-data">
-                <h3 class="add-popup__title">Новое место</h3>
-                <input type="text" name="Place" placeholder="Название" class="add-popup__text add-popup__text_type_place">
-                <input type="text" name="Link" placeholder="Ссылка на картинку" class="add-popup__text add-popup__text_type_source">
-                <button class="add-popup__save-button" type='submit'>Сохранить</button>
-                <button class="add-popup__close-button" type="button"></button>
 
+        <section class="popup popup_type_add-card">
+            <form class="popup__container" name="place-data">
+                <h3 class="popup__title">Новое место</h3>
+                <input type="text" name="Place" placeholder="Название" class="popup__text popup__text_type_place">
+                <input type="text" name="Link" placeholder="Ссылка на картинку" class="popup__text popup__text_type_source">
+                <button class="popup__save-button" type='submit'>Создать</button>
+                <button class="popup__close-button" type="button"></button>
             </form>
-
         </section>
-        <section class="image-popup">
-            <div class="image-popup__container">
-                <button class="image-popup__close-button" type="button"></button>
-                <img class="image-popup__image" src=" ">
-                <p class="image-popup__title"></p>
+
+        <section class="popup popup_type_image ">
+            <div class="popup__image-container">
+                <button class="popup__close-button popup__close-button_type_image" type="button"></button>
+                <img class="popup__image" src=" ">
+                <p class="popup__title"></p>
             </div>
         </section>
+
     </div>
+    <script src="scripts/initial-сards.js"></script>
     <script src="scripts/index.js "></script>
 
 </body>
