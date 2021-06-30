@@ -21,10 +21,10 @@ const buttonCloseAddCard = formAddCard.querySelector('.popup__close-button')
 
 
 const popupImage = document.querySelector('.popup_type_image')
-const contImage = popupImage.querySelector('.popup__image-container')
-const buttonCloseImage = contImage.querySelector('.popup__close-button')
-const pictureImage = contImage.querySelector('.popup__image')
-const titleImage = contImage.querySelector('.popup__title')
+const imageContainer = popupImage.querySelector('.popup__image-container')
+const buttonCloseImage = imageContainer.querySelector('.popup__close-button')
+const pictureImage = imageContainer.querySelector('.popup__image')
+const titleImage = imageContainer.querySelector('.popup__title')
 
 
 const elementsList = document.querySelector('.elements__list')
@@ -41,11 +41,15 @@ function createCard(item) {
     imageCard.addEventListener('click', displayImagePopup)
     newCard.querySelector('.element__remove-button').addEventListener('click', removeCard)
     newCard.querySelector('.element__heart').addEventListener('click', toggleHeart)
-    return addCard(newCard)
+    console.log(newCard);
+
+    return newCard
 }
 
 function addCard(card) {
-    elementsList.prepend(card)
+    const element = createCard(card)
+
+    elementsList.prepend(element)
 }
 
 function removeCard(event) {
@@ -57,7 +61,7 @@ function displayImagePopup(evt) {
     pictureImage.src = targetImage.src
     pictureImage.alt = targetImage.alt
     titleImage.textContent = targetImage.alt
-    popupImage.classList.toggle('popup_opened')
+    togglePopup(popupImage)
 
 }
 
@@ -80,16 +84,16 @@ function submitEditProfileForm(event) {
 function submitAddCardForm(event) {
     event.preventDefault()
     const newCard = {
-        name: "",
-        link: ""
+        name: inputPlaceAddCard.value,
+        link: inputSourceAddCard.value
     };
-    newCard.name = inputPlaceAddCard.value
-    newCard.link = inputSourceAddCard.value
-    createCard(newCard)
+    addCard(newCard)
+    togglePopup(popupAddCard)
+    formAddCard.reset()
 }
 
 initialCards.forEach(function(item) {
-    createCard(item)
+    addCard(item)
 })
 
 
@@ -106,8 +110,7 @@ buttonCloseImage.addEventListener('click', function() {
 })
 
 buttonCloseAddCard.addEventListener('click', function() {
-    inputPlaceAddCard.value = null
-    inputSourceAddCard.value = null
+    formAddCard.reset()
     togglePopup(popupAddCard)
 })
 
