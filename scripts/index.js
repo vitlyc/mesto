@@ -114,7 +114,7 @@ buttonCloseAddCard.addEventListener('click', function() {
 })
 
 buttonCloseEditProfile.addEventListener('click', function() {
-    formEditProfile.reset()
+    // formEditProfile.reset()
     togglePopup(popupEditProfile)
 })
 
