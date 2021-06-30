@@ -79,6 +79,7 @@ function submitEditProfileForm(event) {
     titletProfile.textContent = inputNameEditProfile.value;
     subTitleProfile.textContent = inputProfessionEditProfile.value;
     togglePopup(popupEditProfile)
+    formEditProfile.reset()
 }
 
 function submitAddCardForm(event) {
