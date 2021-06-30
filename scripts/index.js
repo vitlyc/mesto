@@ -77,7 +77,7 @@ function submitEditProfileForm(event) {
     titletProfile.textContent = inputNameEditProfile.value;
     subTitleProfile.textContent = inputProfessionEditProfile.value;
     togglePopup(popupEditProfile)
-    formEditProfile.reset()
+        // formEditProfile.reset()
 }
 
 function submitAddCardForm(event) {
@@ -114,6 +114,7 @@ buttonCloseAddCard.addEventListener('click', function() {
 })
 
 buttonCloseEditProfile.addEventListener('click', function() {
+    formEditProfile.reset()
     togglePopup(popupEditProfile)
 })
 
