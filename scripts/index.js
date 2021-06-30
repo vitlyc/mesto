@@ -41,8 +41,6 @@ function createCard(item) {
     imageCard.addEventListener('click', displayImagePopup)
     newCard.querySelector('.element__remove-button').addEventListener('click', removeCard)
     newCard.querySelector('.element__heart').addEventListener('click', toggleHeart)
-    console.log(newCard);
-
     return newCard
 }
 
