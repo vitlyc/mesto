@@ -5,6 +5,7 @@
     margin: 0 auto;
     padding: 136px 40px;
     position: relative;
+    padding-bottom: 0;
 }
 
 @media screen and (min-width: 720px) {
