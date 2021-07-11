@@ -89,6 +89,29 @@ function submitAddCardForm(event) {
     formAddCard.reset()
 }
 
+function setPopupListener(popup) {
+    popup.addEventListener('click', closeOnClickPopup)
+    document.addEventListener('keydown', closeOnEscPopup)
+}
+
+function closeOnClickPopup(event) {
+    if (event.target !== event.currentTarget) {
+        console.log(event.target)
+    } else {
+        console.log("event.target == event.currentTarget")
+        togglePopup(event.target)
+        event.target.removeEventListener('click', closeOnClickPopup)
+    }
+}
+
+function closeOnEscPopup(event) {
+    if (event.keyCode == 27) {
+        popupList.forEach(function(item) {
+            item.classList.remove('popup_opened')
+        })
+    }
+}
+
 initialCards.forEach(function(item) {
     addCard(item)
 })
@@ -121,32 +144,3 @@ buttonCloseEditProfile.addEventListener('click', function(event) {
 formEditProfile.addEventListener('submit', submitEditProfileForm)
 
 formAddCard.addEventListener('submit', submitAddCardForm)
-
-
-
-function setPopupListener(popup) {
-    popup.addEventListener('click', closeOnClickPopup)
-    document.addEventListener('keydown', closeOnEscPopup)
-}
-
-function closeOnClickPopup(event) {
-    if (event.target !== event.currentTarget) {
-        console.log(event.target)
-    } else {
-        console.log("event.target == event.currentTarget")
-        togglePopup(event.target)
-        event.target.removeEventListener('click', closeOnClickPopup)
-    }
-}
-
-function closeOnEscPopup(event) {
-    if (event.keyCode == 27) {
-        popupList.forEach(function(item) {
-            item.classList.remove('popup_opened')
-        })
-    }
-
-
-
-
-}
