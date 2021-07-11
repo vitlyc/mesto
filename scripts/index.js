@@ -68,7 +68,9 @@ function toggleHeart(event) {
 }
 
 function togglePopup(popup) {
+
     popup.classList.toggle('popup_opened')
+
 }
 
 
@@ -98,6 +100,7 @@ initialCards.forEach(function(item) {
 
 buttonEditProfile.addEventListener('click', function() {
     togglePopup(popupEditProfile)
+
 })
 
 buttonAddProfile.addEventListener('click', function() {
@@ -108,14 +111,16 @@ buttonCloseImage.addEventListener('click', function() {
     togglePopup(popupImage)
 })
 
-buttonCloseAddCard.addEventListener('click', function() {
+buttonCloseAddCard.addEventListener('click', function(event) {
+    event.preventDefault()
     formAddCard.reset()
     togglePopup(popupAddCard)
 })
 
-buttonCloseEditProfile.addEventListener('click', function() {
-    // formEditProfile.reset()
+buttonCloseEditProfile.addEventListener('click', function(event) {
+    event.preventDefault()
     togglePopup(popupEditProfile)
+
 })
 
 formEditProfile.addEventListener('submit', submitEditProfileForm)

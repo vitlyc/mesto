@@ -1,18 +1,3 @@
-// const popupEditProfile = document.querySelector('.popup_type_edit-profile')
-// const formEditProfile = popupEditProfile.querySelector('.popup__container')
-// const inputNameEditProfile = formEditProfile.querySelector('.popup__text_type_name')
-// const inputProfessionEditProfile = formEditProfile.querySelector('.popup__text_type_profession')
-// const buttonSaveEditProfile = formEditProfile.querySelector('.popup__save-button')
-// const buttonCloseEditProfile = formEditProfile.querySelector('.popup__close-button')
-
-
-// const popupAddCard = document.querySelector('.popup_type_add-card')
-// const formAddCard = popupAddCard.querySelector('.popup__container')
-// const inputPlaceAddCard = formAddCard.querySelector('.popup__text_type_place')
-// const inputSourceAddCard = formAddCard.querySelector('.popup__text_type_source')
-// const buttonSaveAddCard = formAddCard.querySelector('.popup__save-button')
-// const buttonCloseAddCard = formAddCard.querySelector('.popup__close-button')
-
 function enableValidation() {
     const formList = Array.from(document.querySelectorAll('.popup__container'))
     formList.forEach(function(formElement) {
@@ -25,18 +10,21 @@ function setEventListener(formElement) {
         evt.preventDefault()
     })
     const inputList = Array.from(formElement.querySelectorAll('.popup__text'))
+    const buttonElement = formElement.querySelector('.popup__save-button')
     inputList.forEach(function(inputElement) {
         inputElement.addEventListener('input', function(event) {
-            console.log(event.target.name);
+
             checkInputValidity(inputElement)
+            toggleButtonActivity(buttonElement, inputList)
         })
     })
+    toggleButtonActivity(buttonElement, inputList)
 }
 
 
 function checkInputValidity(inputElement) {
     const isInputValid = inputElement.validity.valid
-    console.log(isInputValid);
+
 
     if (isInputValid) {
         hideInputError(inputElement)
@@ -48,22 +36,33 @@ function checkInputValidity(inputElement) {
 
 function showInputError(inputElement, errorMessage) {
     const parrentForm = inputElement.closest('.popup__container')
-    console.log(parrentForm);
     const errorElement = parrentForm.querySelector(`.${inputElement.id}-error`)
+    console.log(errorMessage);
     console.log(errorElement);
     errorElement.textContent = errorMessage
-        //Добавить класс элементу еррор
+    errorElement.classList.add('.popup-error_active')
 }
 
 function hideInputError(inputElement) {
     const parrentForm = inputElement.closest('.popup__container')
-    console.log(parrentForm);
     const errorElement = parrentForm.querySelector(`.${inputElement.id}-error`)
-    console.log(errorElement);
     errorElement.textContent = ''
-        //Удалить класс элементу еррор
+    errorElement.classList.remove('.popup-error_active')
 }
 
+function toggleButtonActivity(buttonElement, inputList) {
+
+    const hasNotValidInput = inputList.some(function(inputElement) {
+        return !inputElement.validity.valid
+    })
+
+    if (hasNotValidInput) {
+        buttonElement.setAttribute('disabled', true)
+    } else {
+        buttonElement.removeAttribute('disabled', true)
+
+    }
+}
 
 
 

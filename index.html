@@ -51,22 +51,22 @@
             <form class="popup__container" name="user-data" novalidate>
                 <h3 class="popup__title">Редактировать профиль</h3>
                 <input id="name-input" type="text" name="name" placeholder="Имя" value="Жак-Ив Кусто" class="popup__text popup__text_type_name" required minlength="2" maxlength="40">
-                <span id="name-input-error" class="popup__error name-input-error">*</span>
-                <input id="profession-input" type="text" name="profession " placeholder="Профессия " value="Исследователь океана " class="popup__text popup__text_type_profession " required required minlength="2" maxlength="200">
-                <span class="popup__error profession-input-error">*</span>
-                <button class="popup__save-button " type='submit'>Сохранить</button>
+                <span id="name-input-error" class="popup__error name-input-error"></span>
+                <input id="profession-input" type="text" name="profession " placeholder="Профессия " value="Исследователь океана " class="popup__text popup__text_type_profession " required minlength="2" maxlength="200">
+                <span id="profession-input-error" class="popup__error profession-input-error"></span>
+                <button class="popup__save-button" type='submit'>Сохранить</button>
                 <button class="popup__close-button " type="button "></button>
             </form>
         </section>
 
         <section class="popup popup_type_add-card ">
-            <form class="popup__container " name="place-data " novalidate>
+            <form class="popup__container " name="place-data" novalidate>
                 <h3 class="popup__title ">Новое место</h3>
-                <input id="place-input" type="text " name="place" placeholder="Название " class="popup__text popup__text_type_place " required required minlength="2" maxlength="30">
-                <span id="name-input-error" class="popup__error place-input-error">*</span>
+                <input id="place-input" type="text " name="place" placeholder="Название " class="popup__text popup__text_type_place " required minlength="2" maxlength="30">
+                <span id="name-input-error" class="popup__error place-input-error"></span>
                 <input id="url-input" type="url" name="link " placeholder="Ссылка на картинку " class="popup__text popup__text_type_source " required>
-                <span class="popup__error url-input-error">*</span>
-                <button class="popup__save-button " type='submit'>Создать</button>
+                <span class="popup__error url-input-error"></span>
+                <button class="popup__save-button" type='submit'>Создать</button>
                 <button class="popup__close-button " type="button "></button>
             </form>
         </section>
