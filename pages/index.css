@@ -31,6 +31,22 @@
 @import url(../blocks/popup/__image-container/popup__image-container.css);
 @import url(../blocks/popup/__close-button/popup__close-button.css);
 @import url(../blocks/popup/__close-button/_type_image/popup__close-button_type_image.css);
+.popup__error {
+    opacity: 1;
+    color: #FF0000;
+    /* position: absolute;
+    left: 0; */
+    /* display: block; */
+    margin: 5px 15px 0 0;
+    font-size: 12px;
+    line-height: 15px;
+}
+
+
+/* .popup__error_active {
+    opacity: 1;
+} */
+
 
 /* @import url(../blocks/add-popup/add-popup.css);
 @import url(../blocks/add-popup/_opened/add-popup_opened.css);
