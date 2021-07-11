@@ -30,7 +30,7 @@ const titleImage = imageContainer.querySelector('.popup__title')
 const elementsList = document.querySelector('.elements__list')
 const template = elementsList.querySelector('.template').content
 
-
+const popupList = Array.from(document.querySelectorAll('.popup'))
 
 function createCard(item) {
     const newCard = template.cloneNode(true)
@@ -46,7 +46,6 @@ function createCard(item) {
 
 function addCard(card) {
     const element = createCard(card)
-
     elementsList.prepend(element)
 }
 
@@ -60,7 +59,7 @@ function displayImagePopup(evt) {
     pictureImage.alt = targetImage.alt
     titleImage.textContent = targetImage.alt
     togglePopup(popupImage)
-
+    setPopupListener(popupImage)
 }
 
 function toggleHeart(event) {
@@ -68,11 +67,8 @@ function toggleHeart(event) {
 }
 
 function togglePopup(popup) {
-
     popup.classList.toggle('popup_opened')
-
 }
-
 
 function submitEditProfileForm(event) {
     event.preventDefault()
@@ -97,14 +93,14 @@ initialCards.forEach(function(item) {
     addCard(item)
 })
 
-
 buttonEditProfile.addEventListener('click', function() {
     togglePopup(popupEditProfile)
-
+    setPopupListener(popupEditProfile)
 })
 
 buttonAddProfile.addEventListener('click', function() {
     togglePopup(popupAddCard)
+    setPopupListener(popupAddCard)
 })
 
 buttonCloseImage.addEventListener('click', function() {
@@ -120,11 +116,37 @@ buttonCloseAddCard.addEventListener('click', function(event) {
 buttonCloseEditProfile.addEventListener('click', function(event) {
     event.preventDefault()
     togglePopup(popupEditProfile)
-
 })
 
 formEditProfile.addEventListener('submit', submitEditProfileForm)
 
-
-
 formAddCard.addEventListener('submit', submitAddCardForm)
+
+
+
+function setPopupListener(popup) {
+    popup.addEventListener('click', closeOnClickPopup)
+    document.addEventListener('keydown', closeOnEscPopup)
+}
+
+function closeOnClickPopup(event) {
+    if (event.target !== event.currentTarget) {
+        console.log(event.target)
+    } else {
+        console.log("event.target == event.currentTarget")
+        togglePopup(event.target)
+        event.target.removeEventListener('click', closeOnClickPopup)
+    }
+}
+
+function closeOnEscPopup(event) {
+    if (event.keyCode == 27) {
+        popupList.forEach(function(item) {
+            item.classList.remove('popup_opened')
+        })
+    }
+
+
+
+
+}

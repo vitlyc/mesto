@@ -20,6 +20,7 @@
     .profile__edit-button {
         margin-top: 15px;
         margin-left: 18px;
+        margin-right: 18px;
         position: static;
         background-size: 10px;
     }

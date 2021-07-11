@@ -40,14 +40,14 @@ function showInputError(inputElement, errorMessage) {
     console.log(errorMessage);
     console.log(errorElement);
     errorElement.textContent = errorMessage
-    errorElement.classList.add('.popup-error_active')
+    errorElement.classList.add("popup-error_active")
 }
 
 function hideInputError(inputElement) {
     const parrentForm = inputElement.closest('.popup__container')
     const errorElement = parrentForm.querySelector(`.${inputElement.id}-error`)
     errorElement.textContent = ''
-    errorElement.classList.remove('.popup-error_active')
+    errorElement.classList.remove("popup-error_active")
 }
 
 function toggleButtonActivity(buttonElement, inputList) {
