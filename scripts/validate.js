@@ -37,8 +37,7 @@ function checkInputValidity(inputElement) {
 function showInputError(inputElement, errorMessage) {
     const parrentForm = inputElement.closest('.popup__container')
     const errorElement = parrentForm.querySelector(`.${inputElement.id}-error`)
-    console.log(errorMessage);
-    console.log(errorElement);
+    inputElement.classList.add('popup__text_error')
     errorElement.textContent = errorMessage
     errorElement.classList.add("popup-error_active")
 }
@@ -46,6 +45,7 @@ function showInputError(inputElement, errorMessage) {
 function hideInputError(inputElement) {
     const parrentForm = inputElement.closest('.popup__container')
     const errorElement = parrentForm.querySelector(`.${inputElement.id}-error`)
+    inputElement.classList.remove('popup__text_error')
     errorElement.textContent = ''
     errorElement.classList.remove("popup-error_active")
 }
