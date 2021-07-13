@@ -17,7 +17,6 @@ function setEventListener(formElement, { formSelector, ...config }) {
     const buttonElement = formElement.querySelector(config.submitButtonSelector)
     inputList.forEach(function(inputElement) {
         inputElement.addEventListener('input', function(event) {
-
             checkInputValidity(inputElement, { formSelector, ...config })
             toggleButtonActivity(buttonElement, inputList)
         })

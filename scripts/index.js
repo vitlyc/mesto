@@ -36,6 +36,7 @@ const popupList = Array.from(document.querySelectorAll('.popup'))
 
 
 function blockButton(event) {
+
     event.submitter.setAttribute('disabled', true)
 }
 
@@ -157,5 +158,4 @@ buttonCloseEditProfile.addEventListener('click', function(event) {
 
 formEditProfile.addEventListener('submit', submitEditProfileForm)
 
-formAddCard.addEventListener('submit', submitAddCardForm, )
-    // formAddCard.addEventListener('submit', blockButton)
+formAddCard.addEventListener('submit', submitAddCardForm)
