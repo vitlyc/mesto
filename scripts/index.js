@@ -1,3 +1,5 @@
+const keyCode = 27
+
 const buttonEditProfile = document.querySelector('.profile__edit-button')
 const buttonAddProfile = document.querySelector('.profile__add-button')
 const titletProfile = document.querySelector('.profile__title')
@@ -32,6 +34,11 @@ const template = elementsList.querySelector('.template').content
 
 const popupList = Array.from(document.querySelectorAll('.popup'))
 
+
+function blockButton(event) {
+    event.submitter.setAttribute('disabled', true)
+}
+
 function createCard(item) {
     const newCard = template.cloneNode(true)
     newCard.querySelector('.element__title').textContent = item.name
@@ -58,7 +65,7 @@ function displayImagePopup(evt) {
     pictureImage.src = targetImage.src
     pictureImage.alt = targetImage.alt
     titleImage.textContent = targetImage.alt
-    togglePopup(popupImage)
+    openPopup(popupImage)
     setPopupListener(popupImage)
 }
 
@@ -66,15 +73,21 @@ function toggleHeart(event) {
     event.target.classList.toggle('element__heart_active')
 }
 
-function togglePopup(popup) {
-    popup.classList.toggle('popup_opened')
+function closePopup(popup) {
+    popup.classList.remove('popup_opened')
+
+}
+
+function openPopup(popup) {
+    popup.classList.add('popup_opened')
+
 }
 
 function submitEditProfileForm(event) {
     event.preventDefault()
     titletProfile.textContent = inputNameEditProfile.value;
     subTitleProfile.textContent = inputProfessionEditProfile.value;
-    togglePopup(popupEditProfile)
+    closePopup(popupEditProfile)
         // formEditProfile.reset()
 }
 
@@ -84,8 +97,9 @@ function submitAddCardForm(event) {
         name: inputPlaceAddCard.value,
         link: inputSourceAddCard.value
     };
+    blockButton(event)
     addCard(newCard)
-    togglePopup(popupAddCard)
+    closePopup(popupAddCard)
     formAddCard.reset()
 }
 
@@ -95,52 +109,53 @@ function setPopupListener(popup) {
 }
 
 function closeOnClickPopup(event) {
-    if (event.target !== event.currentTarget) {
-        console.log(event.target)
-    } else {
-        console.log("event.target == event.currentTarget")
-        togglePopup(event.target)
+    if (event.target == event.currentTarget) {
+        closePopup(event.target)
         event.target.removeEventListener('click', closeOnClickPopup)
     }
 }
 
 function closeOnEscPopup(event) {
-    if (event.keyCode == 27) {
-        popupList.forEach(function(item) {
-            item.classList.remove('popup_opened')
+    if (event.keyCode == keyCode) {
+        const activePopup = popupList.find(function(item) {
+            return item.classList.contains('popup_opened')
         })
+        closePopup(activePopup)
     }
 }
+
+// function renewPopup(popup) {}
 
 initialCards.forEach(function(item) {
     addCard(item)
 })
 
 buttonEditProfile.addEventListener('click', function() {
-    togglePopup(popupEditProfile)
+    openPopup(popupEditProfile)
     setPopupListener(popupEditProfile)
 })
 
 buttonAddProfile.addEventListener('click', function() {
-    togglePopup(popupAddCard)
+    openPopup(popupAddCard)
     setPopupListener(popupAddCard)
 })
 
 buttonCloseImage.addEventListener('click', function() {
-    togglePopup(popupImage)
+    closePopup(popupImage)
 })
 
 buttonCloseAddCard.addEventListener('click', function(event) {
     event.preventDefault()
     formAddCard.reset()
-    togglePopup(popupAddCard)
+    closePopup(popupAddCard)
 })
 
 buttonCloseEditProfile.addEventListener('click', function(event) {
     event.preventDefault()
-    togglePopup(popupEditProfile)
+    closePopup(popupEditProfile)
 })
 
 formEditProfile.addEventListener('submit', submitEditProfileForm)
 
-formAddCard.addEventListener('submit', submitAddCardForm)
+formAddCard.addEventListener('submit', submitAddCardForm, )
+    // formAddCard.addEventListener('submit', blockButton)
