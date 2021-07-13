@@ -1,4 +1,4 @@
-const keyCode = 27
+const escapeCode = 27
 
 const buttonEditProfile = document.querySelector('.profile__edit-button')
 const buttonAddProfile = document.querySelector('.profile__add-button')
@@ -117,7 +117,7 @@ function closeOnClickPopup(event) {
 }
 
 function closeOnEscPopup(event) {
-    if (event.keyCode == keyCode) {
+    if (event.keyCode == escapeCode) {
         const activePopup = popupList.find(function(item) {
             return item.classList.contains('popup_opened')
         })
