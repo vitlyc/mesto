@@ -76,12 +76,12 @@ function toggleHeart(event) {
 
 function closePopup(popup) {
     popup.classList.remove('popup_opened')
-
+    document.removeEventListener('keydown', closeOnEscPopup)
 }
 
 function openPopup(popup) {
     popup.classList.add('popup_opened')
-
+    document.addEventListener('keydown', closeOnEscPopup)
 }
 
 function submitEditProfileForm(event) {
@@ -106,7 +106,7 @@ function submitAddCardForm(event) {
 
 function setPopupListener(popup) {
     popup.addEventListener('click', closeOnClickPopup)
-    document.addEventListener('keydown', closeOnEscPopup)
+
 }
 
 function closeOnClickPopup(event) {
@@ -125,7 +125,6 @@ function closeOnEscPopup(event) {
     }
 }
 
-// function renewPopup(popup) {}
 
 initialCards.forEach(function(item) {
     addCard(item)
