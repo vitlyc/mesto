@@ -1,3 +1,7 @@
+import { Card, initialCards } from './Card.js';
+
+
+
 const escapeCode = 27
 
 const buttonEditProfile = document.querySelector('.profile__edit-button')
@@ -40,39 +44,40 @@ function blockButton(event) {
     event.submitter.setAttribute('disabled', true)
 }
 
-function createCard(item) {
-    const newCard = template.cloneNode(true)
-    newCard.querySelector('.element__title').textContent = item.name
-    const imageCard = newCard.querySelector('.element__image')
-    imageCard.src = item.link
-    imageCard.alt = item.name
-    imageCard.addEventListener('click', displayImagePopup)
-    newCard.querySelector('.element__remove-button').addEventListener('click', removeCard)
-    newCard.querySelector('.element__heart').addEventListener('click', toggleHeart)
-    return newCard
+// function createCard(item) {
+//     const newCard = template.cloneNode(true)
+//     newCard.querySelector('.element__title').textContent = item.name
+//     const imageCard = newCard.querySelector('.element__image')
+//     imageCard.src = item.link
+//     imageCard.alt = item.name
+//     imageCard.addEventListener('click', displayImagePopup)
+//     newCard.querySelector('.element__remove-button').addEventListener('click', removeCard)
+//     newCard.querySelector('.element__heart').addEventListener('click', toggleHeart)
+//     return newCard
+// }
+
+function addCard(item) {
+    const card = new Card(item, '.template')
+    const cardElement = card.generateCard();
+    elementsList.prepend(cardElement);
 }
 
-function addCard(card) {
-    const element = createCard(card)
-    elementsList.prepend(element)
-}
+// function removeCard(event) {
+//     event.target.closest('.element').remove()
+// }
 
-function removeCard(event) {
-    event.target.closest('.element').remove()
-}
+// function displayImagePopup(evt) {
+//     const targetImage = evt.target
+//     pictureImage.src = targetImage.src
+//     pictureImage.alt = targetImage.alt
+//     titleImage.textContent = targetImage.alt
+//     openPopup(popupImage)
+//     setPopupListener(popupImage)
+// }
 
-function displayImagePopup(evt) {
-    const targetImage = evt.target
-    pictureImage.src = targetImage.src
-    pictureImage.alt = targetImage.alt
-    titleImage.textContent = targetImage.alt
-    openPopup(popupImage)
-    setPopupListener(popupImage)
-}
-
-function toggleHeart(event) {
-    event.target.classList.toggle('element__heart_active')
-}
+// function toggleHeart(event) {
+//     event.target.classList.toggle('element__heart_active')
+// }
 
 function closePopup(popup) {
     popup.classList.remove('popup_opened')
@@ -126,9 +131,7 @@ function closeOnEscPopup(event) {
 }
 
 
-initialCards.forEach(function(item) {
-    addCard(item)
-})
+
 
 buttonEditProfile.addEventListener('click', function() {
     openPopup(popupEditProfile)
@@ -158,3 +161,15 @@ buttonCloseEditProfile.addEventListener('click', function(event) {
 formEditProfile.addEventListener('submit', submitEditProfileForm)
 
 formAddCard.addEventListener('submit', submitAddCardForm)
+
+
+
+
+
+initialCards.forEach((item) => {
+    addCard(item)
+});
+
+
+
+export { openPopup, setPopupListener, pictureImage, titleImage, popupImage }
