@@ -173,8 +173,9 @@ formList.forEach(function(formElement) {
         inputErrorClass: 'popup__text_error',
         errorClass: 'popup__error_visible'
     }, formElement)
-    form.enableValidation()
     formToBlock = form
+    form.enableValidation()
+
 })
 
 
