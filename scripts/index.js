@@ -1,5 +1,31 @@
-import { Card, initialCards } from './Card.js';
-import { FormValidator, config } from './FormValidator.js';
+import { Card } from './Card.js';
+import { FormValidator } from './FormValidator.js';
+const initialCards = [{
+        name: 'Архыз',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+    {
+        name: 'Челябинская область',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+        name: 'Иваново',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+        name: 'Камчатка',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+        name: 'Холмогорский район',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+        name: 'Байкал',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    }
+];
+
 const escapeCode = 27
 
 const buttonEditProfile = document.querySelector('.profile__edit-button')
@@ -33,16 +59,21 @@ const template = elementsList.querySelector('.template').content
 
 const popupList = Array.from(document.querySelectorAll('.popup'))
 const formList = Array.from(document.querySelectorAll('.popup__container'))
+let formToBlock = null
 
-function blockButton(event) {
-
-    event.submitter.setAttribute('disabled', true)
-}
+// function blockButton(event) {
+//     event.submitter.setAttribute('disabled', true)
+// }
 
 function addCard(item) {
+    const newCard = createCard(item)
+    elementsList.prepend(newCard);
+}
+
+function createCard(item) {
     const card = new Card(item, '.template')
-    const cardElement = card.generateCard();
-    elementsList.prepend(cardElement);
+    return card.generateCard();
+
 }
 
 function closePopup(popup) {
@@ -69,21 +100,20 @@ function submitAddCardForm(event) {
         name: inputPlaceAddCard.value,
         link: inputSourceAddCard.value
     };
-    blockButton(event)
     addCard(newCard)
     closePopup(popupAddCard)
     formAddCard.reset()
+    formToBlock.toggleButtonActivity()
 }
 
 function setPopupListener(popup) {
     popup.addEventListener('click', closeOnClickPopup)
-
 }
 
 function closeOnClickPopup(event) {
     if (event.target == event.currentTarget) {
         closePopup(event.target)
-        event.target.removeEventListener('click', closeOnClickPopup)
+
     }
 }
 
@@ -126,7 +156,7 @@ formEditProfile.addEventListener('submit', submitEditProfileForm)
 
 formAddCard.addEventListener('submit', submitAddCardForm)
 
-
+popupImage.addEventListener('click', closeOnClickPopup)
 
 
 initialCards.forEach((item) => {
@@ -134,12 +164,18 @@ initialCards.forEach((item) => {
 });
 
 
-
-
 formList.forEach(function(formElement) {
-    const form = new FormValidator(config, formElement)
+    const form = new FormValidator({
+        formSelector: '.popup__container',
+        inputSelector: '.popup__text',
+        submitButtonSelector: '.popup__save-button',
+        inactiveButtonClass: 'popup__save-button_disabled',
+        inputErrorClass: 'popup__text_error',
+        errorClass: 'popup__error_visible'
+    }, formElement)
     form.enableValidation()
+    formToBlock = form
 })
 
 
-export { openPopup, setPopupListener, pictureImage, titleImage, popupImage }
+export { openPopup, pictureImage, titleImage, popupImage }
