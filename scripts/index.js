@@ -59,7 +59,7 @@ const template = elementsList.querySelector('.template').content
 
 const popupList = Array.from(document.querySelectorAll('.popup'))
 const formList = Array.from(document.querySelectorAll('.popup__container'))
-let formToBlock = null
+    // let formToBlock = null
 
 // function blockButton(event) {
 //     event.submitter.setAttribute('disabled', true)
@@ -103,7 +103,7 @@ function submitAddCardForm(event) {
     addCard(newCard)
     closePopup(popupAddCard)
     formAddCard.reset()
-    formToBlock.toggleButtonActivity()
+    classFormAddCard.toggleButtonActivity()
 }
 
 function setPopupListener(popup) {
@@ -163,20 +163,27 @@ initialCards.forEach((item) => {
     addCard(item)
 });
 
+const classFormProfile = new FormValidator({
+    formSelector: '.popup__container',
+    inputSelector: '.popup__text',
+    submitButtonSelector: '.popup__save-button',
+    inactiveButtonClass: 'popup__save-button_disabled',
+    inputErrorClass: 'popup__text_error',
+    errorClass: 'popup__error_visible'
+}, formList[0])
 
-formList.forEach(function(formElement) {
-    const form = new FormValidator({
-        formSelector: '.popup__container',
-        inputSelector: '.popup__text',
-        submitButtonSelector: '.popup__save-button',
-        inactiveButtonClass: 'popup__save-button_disabled',
-        inputErrorClass: 'popup__text_error',
-        errorClass: 'popup__error_visible'
-    }, formElement)
-    formToBlock = form
-    form.enableValidation()
+classFormProfile.enableValidation()
 
-})
+const classFormAddCard = new FormValidator({
+    formSelector: '.popup__container',
+    inputSelector: '.popup__text',
+    submitButtonSelector: '.popup__save-button',
+    inactiveButtonClass: 'popup__save-button_disabled',
+    inputErrorClass: 'popup__text_error',
+    errorClass: 'popup__error_visible'
+}, formList[1])
+
+classFormAddCard.enableValidation()
 
 
 export { openPopup, pictureImage, titleImage, popupImage }
