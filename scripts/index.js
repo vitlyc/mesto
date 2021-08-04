@@ -103,7 +103,7 @@ function submitAddCardForm(event) {
     addCard(newCard)
     closePopup(popupAddCard)
     formAddCard.reset()
-    classFormAddCard.toggleButtonActivity()
+    sampleFormAddCard.toggleButtonActivity()
 }
 
 function setPopupListener(popup) {
@@ -163,7 +163,7 @@ initialCards.forEach((item) => {
     addCard(item)
 });
 
-const classFormProfile = new FormValidator({
+const sampleFormProfile = new FormValidator({
     formSelector: '.popup__container',
     inputSelector: '.popup__text',
     submitButtonSelector: '.popup__save-button',
@@ -172,9 +172,9 @@ const classFormProfile = new FormValidator({
     errorClass: 'popup__error_visible'
 }, formList[0])
 
-classFormProfile.enableValidation()
+sampleFormProfile.enableValidation()
 
-const classFormAddCard = new FormValidator({
+const sampleFormAddCard = new FormValidator({
     formSelector: '.popup__container',
     inputSelector: '.popup__text',
     submitButtonSelector: '.popup__save-button',
@@ -183,7 +183,7 @@ const classFormAddCard = new FormValidator({
     errorClass: 'popup__error_visible'
 }, formList[1])
 
-classFormAddCard.enableValidation()
+sampleFormAddCard.enableValidation()
 
 
 export { openPopup, pictureImage, titleImage, popupImage }
