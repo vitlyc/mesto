@@ -11,6 +11,8 @@ import {
     initialCards,
     buttonEditProfile,
     buttonAddProfile,
+    buttonCloseAddCard,
+    buttonCloseEditProfile,
     subtitleProfile,
     elementsList,
     titletProfile,
@@ -50,7 +52,8 @@ const cardList = new Section({
     },
     elementsListSelector
 );
-
+const sampleFormProfile = new FormValidator(config, formEditProfile);
+const sampleFormAddCard = new FormValidator(config, formAddCard);
 cardList.addItem();
 
 const user = new UserInfo(titletProfile, subtitleProfile);
@@ -61,6 +64,7 @@ const sampleEditProfile = new PopupWithForm({
         // console.log(value);
         user.setUserInfo(value.name, value.profession);
         sampleEditProfile.close();
+
     }
 });
 
@@ -83,15 +87,13 @@ const sampleAddCard = new PopupWithForm({
                 data: value,
                 handleCardClick: (name, link) => {
                     clickCard(name, link);
-
                 },
             }, cardSelector);
         }
-
         const card = renderCard({ name: value.name, link: value.link }, '.template');
-
         cardList.setItem(card.createCard());
         sampleAddCard.close();
+
     },
 });
 
@@ -100,13 +102,17 @@ buttonAddProfile.addEventListener('click', () => {
     formAddCard.name.value = '';
     formAddCard.link.value = '';
 });
+buttonCloseEditProfile.addEventListener('click', () =>
+    sampleFormProfile.clearInputError()
+);
+buttonCloseAddCard.addEventListener('click', () =>
+    sampleFormAddCard.clearInputError()
+);
 
 sampleEditProfile.setEventListeners();
 sampleAddCard.setEventListeners();
 elementPopupImage.setEventListeners();
 
+
 sampleFormProfile.enableValidation();
 sampleFormAddCard.enableValidation();
-
-const sampleFormProfile = new FormValidator(config, formEditProfile);
-const sampleFormAddCard = new FormValidator(config, formAddCard);
