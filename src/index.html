@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="pages/index.css">
+    <!-- <link rel="stylesheet" href="pages/index.css"> -->
     <title>Mesto</title>
 </head>
 
@@ -15,7 +15,7 @@
         </header>
         <main>
             <section class="profile">
-                <img class="profile__avatar" src="./images/Cousteau.jpg" alt="Кусто">
+                <img src="<%=require('./images/Cousteau.jpg')%>" class="profile__avatar" alt="Кусто">
                 <div class="profile__info">
                     <h1 class="profile__title">Жак-Ив Кусто</h1>
                     <button class="profile__edit-button" type="button"></button>
@@ -52,37 +52,43 @@
                 <h3 class="popup__title">Редактировать профиль</h3>
                 <input id="name-input" type="text" name="name" placeholder="Имя" value="Жак-Ив Кусто" class="popup__text popup__text_type_name" required minlength="2" maxlength="40">
                 <span id="name-input-error" class="popup__error name-input-error"></span>
-                <input id="profession-input" type="text" name="profession " placeholder="Профессия " value="Исследователь океана " class="popup__text popup__text_type_profession " required minlength="2" maxlength="200">
+                <input id="profession-input" type="text" name="profession" placeholder="Профессия" value="Исследователь океана" class="popup__text popup__text_type_profession" required minlength="2" maxlength="200">
                 <span id="profession-input-error" class="popup__error profession-input-error"></span>
                 <button class="popup__save-button" type='submit'>Сохранить</button>
-                <button class="popup__close-button " type="button "></button>
+                <button class="popup__close-button" type="button"></button>
             </form>
         </section>
 
-        <section class="popup popup_type_add-card ">
+        <section class="popup popup_type_add-card">
             <form class="popup__container container" name="place-data" novalidate>
-                <h3 class="popup__title ">Новое место</h3>
-                <input id="place-input" type="text " name="place" placeholder="Название " class="popup__text popup__text_type_place " required minlength="2" maxlength="30">
+                <h3 class="popup__title">Новое место</h3>
+                <input id="place-input" type="text" name="name" placeholder="Название" class="popup__text popup__text_type_place" required minlength="2" maxlength="30">
                 <span id="place-input-error" class="popup__error place-input-error"></span>
-                <input id="url-input" type="url" name="link " placeholder="Ссылка на картинку " class="popup__text popup__text_type_source " required>
+                <input id="url-input" type="url" name="link" placeholder="Ссылка на картинку" class="popup__text popup__text_type_source" required>
                 <span class="popup__error url-input-error"></span>
                 <button class="popup__save-button" type='submit'>Создать</button>
-                <button class="popup__close-button " type="button "></button>
+                <button class="popup__close-button" type="button"></button>
             </form>
         </section>
 
-        <section class="popup popup_type_image ">
+        <section class="popup popup_type_image">
             <div class="popup__image-container container">
-                <button class="popup__close-button popup__close-button_type_image " type="button "></button>
-                <img class="popup__image " src=" " alt='Картинка'>
-                <p class="popup__title popup__title_type_image "></p>
+                <button class="popup__close-button popup__close-button_type_image" type="button"></button>
+                <img class="popup__image" src=" " alt='Картинка'>
+                <p class="popup__title popup__title_type_image"></p>
             </div>
         </section>
 
     </div>
-    <script type="module" src=" scripts/index.js "></script>
-    <script type="module" src="scripts/Card.js"></script>
-    <script type="module" src="scripts/FormValidator.js "></script>
+    <!-- <script type="module" src="./index.js"></script>
+    <script type="module" src="./components/Card.js"></script>
+    <script type="module" src="./components/Popup.js"></script>
+    <script type="module" src="./components/PopupWithForm.js"></script>
+    <script type="module" src="./components/PopupWithImage.js"></script>
+    <script type="module" src="./components/Section.js"></script>
+    <script type="module" src="./components/UserInfo.js"></script>
+    <script type="module" src="./components/FormValidator.js"></script>
+    <script type="module" src="./components/Card.js"></script> -->
 
 
 </body>
