@@ -2,6 +2,7 @@ export default class FormValidator {
     constructor(config, formElement) {
         this._formElement = formElement;
         this._config = config;
+        // this.formToBlock = formElement
     }
 
     _hasInvalidInput() {
@@ -38,15 +39,16 @@ export default class FormValidator {
     }
 
     _toggleButtonState() {
+
         if (this._hasInvalidInput()) {
-            this._blockButton();
+            this.blockButton();
         } else {
             this._buttonElement.classList.remove(this._config.inactiveButtonClass);
             this._buttonElement.removeAttribute('disabled', true)
         }
     }
 
-    _blockButton() {
+    blockButton() {
         this._buttonElement.setAttribute('disabled', true)
     }
     _setEventListeners() {
@@ -54,6 +56,12 @@ export default class FormValidator {
         this._buttonElement = this._formElement.querySelector(this._config.submitButtonSelector);
 
         this._toggleButtonState();
+
+        this._formElement.addEventListener('submit', (evt) => {
+            evt.preventDefault();
+            // this.blockButton();
+
+        });
 
         this._inputList.forEach((inputElement) => {
             inputElement.addEventListener('input', () => {
@@ -66,12 +74,6 @@ export default class FormValidator {
     }
 
     enableValidation() {
-        this._formElement.addEventListener('submit', (evt) => {
-            evt.preventDefault();
-            this._blockButton();
-
-        });
-
         this._setEventListeners();
     };
 

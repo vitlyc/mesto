@@ -58,18 +58,18 @@ cardList.addItem();
 
 const user = new UserInfo(titletProfile, subtitleProfile);
 
-const sampleEditProfile = new PopupWithForm({
+const samplePopupProfile = new PopupWithForm({
     popupSelector: popupEditProfileSelector,
     handleFormSubmit: (value) => {
         // console.log(value);
         user.setUserInfo(value.name, value.profession);
-        sampleEditProfile.close();
+        samplePopupProfile.close();
 
     }
 });
 
 buttonEditProfile.addEventListener('click', () => {
-    sampleEditProfile.open();
+    samplePopupProfile.open();
     const userData = user.getUserInfo();
     // console.log(userData);
     formEditProfile.name.value = userData.name;
@@ -78,7 +78,7 @@ buttonEditProfile.addEventListener('click', () => {
 });
 
 
-const sampleAddCard = new PopupWithForm({
+const samplePopupAddCard = new PopupWithForm({
     popupSelector: popupAddCardSelector,
     handleFormSubmit: (value) => {
 
@@ -92,15 +92,19 @@ const sampleAddCard = new PopupWithForm({
         }
         const card = renderCard({ name: value.name, link: value.link }, '.template');
         cardList.setItem(card.createCard());
-        sampleAddCard.close();
+        samplePopupAddCard.close();
 
     },
 });
 
+sampleFormProfile.enableValidation();
+sampleFormAddCard.enableValidation();
+
 buttonAddProfile.addEventListener('click', () => {
-    sampleAddCard.open();
+    samplePopupAddCard.open();
     formAddCard.name.value = '';
     formAddCard.link.value = '';
+
 });
 buttonCloseEditProfile.addEventListener('click', () =>
     sampleFormProfile.clearInputError()
@@ -108,11 +112,16 @@ buttonCloseEditProfile.addEventListener('click', () =>
 buttonCloseAddCard.addEventListener('click', () =>
     sampleFormAddCard.clearInputError()
 );
+formAddCard.addEventListener('submit', () => {
+    sampleFormAddCard.blockButton()
+});
 
-sampleEditProfile.setEventListeners();
-sampleAddCard.setEventListeners();
+
+samplePopupProfile.setEventListeners();
+samplePopupAddCard.setEventListeners();
 elementPopupImage.setEventListeners();
 
 
-sampleFormProfile.enableValidation();
-sampleFormAddCard.enableValidation();
+
+
+// test
