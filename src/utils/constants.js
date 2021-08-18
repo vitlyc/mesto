@@ -28,8 +28,11 @@ export const escapeCode = 27
 
 export const buttonEditProfile = document.querySelector('.profile__edit-button')
 export const buttonAddProfile = document.querySelector('.profile__add-button')
-export const titletProfile = document.querySelector('.profile__title')
+export const titleProfile = document.querySelector('.profile__title')
+export const titleProfileSelector = '.profile__title'
 export const subtitleProfile = document.querySelector('.profile__subtitle')
+export const subtitleProfileSelector = '.profile__subtitle'
+
 
 export const popupEditProfile = document.querySelector('.popup_type_edit-profile')
 export const popupEditProfileSelector = ('.popup_type_edit-profile')
