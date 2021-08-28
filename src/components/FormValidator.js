@@ -8,7 +8,11 @@ export default class FormValidator {
     }
 
     _hasInvalidInput() {
+        // console.log(this._formElement);
+        // console.log(this._inputList);
+
         return this._inputList.some((inputElement) => {
+
             return !inputElement.validity.valid;
         });
     }
@@ -22,6 +26,7 @@ export default class FormValidator {
     }
 
     _showInputError(inputElement) {
+
         this._errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
         inputElement.classList.add(this._config.inputErrorClass);
         this._errorElement.textContent = inputElement.validationMessage;
@@ -46,8 +51,10 @@ export default class FormValidator {
             this.blockButton();
 
         } else {
+
             this._buttonElement.classList.remove(this._config.inactiveButtonClass);
             this._buttonElement.removeAttribute('disabled', true)
+
         }
     }
 
@@ -60,8 +67,9 @@ export default class FormValidator {
         this._formElement.addEventListener('submit', (evt) => {
             evt.preventDefault();
             // this.blockButton();
-
         });
+
+
 
         this._inputList.forEach((inputElement) => {
             inputElement.addEventListener('input', () => {
@@ -75,6 +83,7 @@ export default class FormValidator {
 
     enableValidation() {
         this._setEventListeners();
+
     };
 
 };

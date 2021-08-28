@@ -3,6 +3,7 @@
     width: 282px;
     padding: 22px 0 25px;
     position: relative;
+    padding-left: 30px;
 }
 
 @media screen and (min-width: 720px) {

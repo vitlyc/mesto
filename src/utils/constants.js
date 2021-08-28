@@ -33,6 +33,9 @@ export const titleProfileSelector = '.profile__title'
 export const subtitleProfile = document.querySelector('.profile__subtitle')
 export const subtitleProfileSelector = '.profile__subtitle'
 
+export const buttonEditAvatar = document.querySelector('.profile__edit-avatar')
+export const userAvatar = document.querySelector('.profile__avatar')
+
 
 export const popupEditProfile = document.querySelector('.popup_type_edit-profile')
 export const popupEditProfileSelector = ('.popup_type_edit-profile')
@@ -57,6 +60,14 @@ export const buttonCloseImage = imageContainer.querySelector('.popup__close-butt
 export const pictureImage = imageContainer.querySelector('.popup__image')
 export const titleImage = imageContainer.querySelector('.popup__title')
 
+
+export const popupApproval = document.querySelector('.popup_type_update-avatar')
+export const formApproval = popupApproval.querySelector('.popup__container')
+export const popupApprovalSelector = '.popup_type_approval'
+
+export const popupAvatar = document.querySelector('.popup_type_update-avatar')
+export const formAvatar = popupAvatar.querySelector('.popup__container')
+export const popupAvatarSelector = '.popup_type_update-avatar'
 
 export const elementsList = document.querySelector('.elements__list')
 export const elementsListSelector = ('.elements__list')
