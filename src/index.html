@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="pages/index.css">
+    <!-- <link rel="stylesheet" href="pages/index.css"> -->
     <title>Mesto</title>
 </head>
 
@@ -16,8 +16,8 @@
         <main>
             <section class="profile">
                 <div class="profile__avatar-container">
-                    <!-- <img src="<%=require('./images/Cousteau.jpg')%>" class="profile__avatar" alt="Кусто"> -->
-                    <img src="./images/Cousteau.jpg" class="profile__avatar" alt="Кусто">
+                    <img src="<%=require('./images/Cousteau.jpg')%>" class="profile__avatar" alt="Кусто">
+                    <!-- <img src="./images/Cousteau.jpg" class="profile__avatar" alt="Кусто"> -->
                     <button class="profile__edit-avatar" type="button"></button>
                 </div>
                 <div class="profile__info">
@@ -36,7 +36,7 @@
 
                     <template class="template">
                     <li class="element">
-                        <img class="element__image" src="" alt="">
+                        <img class="element__image" src=" " alt="">
                         <button class="element__remove-button" type="button"></button>
                         <div class="element__heading">
                             <p class="element__title">Карачаево-Черкесия</p>
@@ -101,13 +101,13 @@
         <section class="popup popup_type_image">
             <div class="popup__image-container container">
                 <button class="popup__close-button popup__close-button_type_image" type="button"></button>
-                <img class="popup__image" src="" alt='Картинка'>
+                <img class="popup__image" src=" " alt='Картинка'>
                 <p class="popup__title popup__title_type_image"></p>
             </div>
         </section>
 
     </div>
-    <script type="module" src="./pages/index.js"></script>
+    <!-- <script type="module" src="./pages/index.js"></script>
     <script type="module" src="./components/Card.js"></script>
     <script type="module" src="./components/Popup.js"></script>
     <script type="module" src="./components/PopupWithForm.js"></script>
@@ -117,7 +117,7 @@
     <script type="module" src="./components/FormValidator.js"></script>
     <script type="module" src="./components/PopupWithConfirm.js"></script>
     <script type="module" src="./components/API.js"></script>
-    <script type="module" src="./utils/constants.js"></script>
+    <script type="module" src="./utils/constants.js"></script> -->
 </body>
 
 </html>

@@ -1,4 +1,4 @@
-// import './index.css';
+import './index.css';
 
 import Card from '../components/Card.js';
 import Section from '../components/Section.js';
@@ -10,19 +10,12 @@ import PopupWithConfirm from '../components/PopupWithConfirm.js';
 import Api from '../components/API.js';
 
 import {
-    //initialCards,
     buttonEditProfile,
     buttonAddProfile,
-    // buttonCloseAddCard,
-    // buttonCloseEditProfile,
     titleProfile,
     subtitleProfile,
     userAvatar,
-    // titleProfileSelector,
-    // subtitleProfileSelector,
-    // elementsList,
     elementsListSelector,
-    // popupImage,
     popupImageSelector,
     popupEditProfile,
     popupEditProfileSelector,
@@ -33,11 +26,9 @@ import {
     config,
     buttonEditAvatar,
     formApproval,
-    // popupApproval,
     popupApprovalSelector,
     popupAvatar,
     popupAvatarSelector,
-    // formAvatar
 } from '../utils/constants.js';
 
 const api = new Api({
@@ -48,12 +39,17 @@ const api = new Api({
     }
 });
 
+// const serverCards = await api.getInitialCards()
+// console.log(serverCards);
+
+
 const userInfo = new UserInfo(titleProfile, subtitleProfile, userAvatar);
 
 let userId;
 
 api.getUserInfo()
     .then((data) => {
+
         userId = data._id;
         userInfo.setUserInfo(data);
     })
@@ -65,21 +61,22 @@ const handlers = {
     handleCardClick: (title, link) => {
         sampleImagePopup.open(title, link)
     },
-    handleDeleteClick: (cardObject) => {
-        popupConfirm.cardObject = cardObject;
+    handleDeleteClick: (cardData) => {
+        popupConfirm.cardData = cardData;
         popupConfirm.open()
-            // console.log(cardObject);
+            // console.log(cardData);
     },
     handleLikeClick: (cardId, isLiked) => {
         return api.likeCard(cardId, isLiked)
     }
-
 }
+
 
 let cardsList;
 
 api.getInitialCards()
     .then((data) => {
+        // console.log(data);
         cardsList = new Section({
             items: data,
             renderer: (item) => {
@@ -100,6 +97,7 @@ function createCard(data) {
         userId: userId,
         handlers
     })
+
     const cardElement = card.createCard();
     card.setCountLikes(cardElement);
     card.updateCountLikes(cardElement);
@@ -171,13 +169,13 @@ const sampleImagePopup = new PopupWithImage(popupImageSelector);
 const popupConfirm = new PopupWithConfirm({
     popupSelector: popupApprovalSelector,
     handleDeleteCard: () => {
-        const cardId = popupConfirm.cardObject._cardId;
-        // console.log(popupConfirm.cardObject._cardId);
+        const cardId = popupConfirm.cardData._cardId;
+        // console.log(popupConfirm.cardData._cardId);
         api.deleteCard(cardId)
             .then(() => {
-                popupConfirm.cardObject.deleteCard()
+                popupConfirm.cardData.deleteCard()
                 popupConfirm.close()
-                popupConfirm.cardObject = '';
+                popupConfirm.cardData = '';
             })
             .catch(err => {
                 console.log(err);
@@ -186,7 +184,7 @@ const popupConfirm = new PopupWithConfirm({
 })
 
 buttonAddProfile.addEventListener('click', function() {
-    // sampleFormAddCard.removeErrors();
+    // sampleFormAddCard.
     sampleFormAddCard.blockButton();
     sampleFormAddCard.clearInputError()
     popupWithFormAddCard.open();
@@ -197,7 +195,7 @@ buttonEditProfile.addEventListener('click', function() {
     // console.log(userData);
     formEditProfile.name.value = userData.name;
     formEditProfile.profession.value = userData.job;
-    // sampleFormProfile.removeErrors();
+    // sampleFormProfile.
     sampleFormProfile.toggleButtonState();
     popupWithFormProfile.open();
     sampleFormProfile.clearInputError()

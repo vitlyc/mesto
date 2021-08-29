@@ -28,6 +28,8 @@ export default class Card {
         this._cardTitle.textContent = this._title;
         this._possibleToDelete();
         this._setEventListeners();
+
+        // console.log(this._userId);
         return this._element;
     }
     _toggleHeart() {
@@ -56,6 +58,7 @@ export default class Card {
 
         this._buttonDelete.addEventListener('click', () => {
             this._handleDeleteClick(this);
+
         });
 
         this._cardImage.addEventListener('click', () => {
