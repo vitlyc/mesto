@@ -42,19 +42,27 @@ const api = new Api({
 // const serverCards = await api.getInitialCards()
 // console.log(serverCards);
 
+let cardsList
 
 const userInfo = new UserInfo(titleProfile, subtitleProfile, userAvatar);
 
-let userId;
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+    .then(([userData, initialCards]) => {
+        userInfo.setUserInfo(userData)
 
-api.getUserInfo()
-    .then((data) => {
+        console.log(userData._id);
+        console.log(initialCards);
 
-        userId = data._id;
-        userInfo.setUserInfo(data);
-    })
-    .catch((err) => {
-        console.log(err);
+        cardsList = new Section({
+            items: initialCards,
+            renderer: (item) => {
+                const cardElement = createCard(item, userData._id);
+                cardsList.addItem(cardElement);
+            }
+        }, elementsListSelector);
+        cardsList.renderItems();
+
+
     })
 
 const handlers = {
@@ -71,30 +79,11 @@ const handlers = {
     }
 }
 
-
-let cardsList;
-
-api.getInitialCards()
-    .then((data) => {
-        // console.log(data);
-        cardsList = new Section({
-            items: data,
-            renderer: (item) => {
-                const cardElement = createCard(item);
-                cardsList.addItem(cardElement);
-            }
-        }, elementsListSelector);
-        cardsList.renderItems();
-    })
-    .catch((err) => {
-        console.log(err);
-    })
-
-function createCard(data) {
+function createCard(cardsData, myID) {
     const card = new Card({
-        data: data,
+        data: cardsData,
         cardSelector: '.template',
-        userId: userId,
+        userId: myID,
         handlers
     })
 
@@ -113,6 +102,7 @@ function renderLoading(popup, isLoading) {
     }
 }
 
+
 const popupWithFormProfile = new PopupWithForm({
     popupSelector: popupEditProfileSelector,
     handleFormSubmit: (info) => {
@@ -121,29 +111,35 @@ const popupWithFormProfile = new PopupWithForm({
         api.setUserInfo(info.name, info.profession)
             .then((data) => {
                 userInfo.setUserInfo(data);
+
             })
             .catch((err) => {
                 console.log(err);
             })
-            .finally(() =>
-                renderLoading(popupEditProfile, false))
+            .finally(() => {
+                renderLoading(popupEditProfile, false)
+                popupWithFormProfile.close()
+            })
     }
 })
 const popupWithFormAddCard = new PopupWithForm({
     popupSelector: popupAddCardSelector,
     handleFormSubmit: (info) => {
-        // console.log(info);
+
         renderLoading(popupAddCard, true);
         api.createNewCard(info.name, info.link)
             .then((data) => {
-                const cardElement = createCard(data);
+                const cardElement = createCard(data, data.owner._id);
                 cardsList.addItem(cardElement);
+                popupWithFormAddCard.close()
             })
             .catch((err) => {
                 console.log(err);
             })
-            .finally(() =>
-                renderLoading(popupAddCard, false))
+            .finally(() => {
+                renderLoading(popupEditProfile, false)
+                popupWithFormProfile.close()
+            })
 
     }
 })
@@ -155,12 +151,15 @@ const popupWithFormAvatar = new PopupWithForm({
         api.setAvatar(info.link)
             .then((data) => {
                 userInfo.setUserInfo(data);
+                popupWithFormAvatar.close()
             })
             .catch((err) => {
                 console.log(err)
             })
-            .finally(() =>
-                renderLoading(popupAvatar, false))
+            .finally(() => {
+                renderLoading(popupEditProfile, false)
+                popupWithFormProfile.close()
+            })
     }
 })
 
